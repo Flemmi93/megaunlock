@@ -22,15 +22,17 @@ interstellar_assembly_0 = {
 	prerequisites = { "tech_interstellar_assembly" }
 
 	possible = {
+		hidden_trigger = {
 		exists = starbase
+		}
 		custom_tooltip = {
 			fail_text = "requires_inside_border"
 			is_inside_border = from
 		}
-		#custom_tooltip = {
-		#	fail_text = "requires_no_existing_megastructure"
-		#	has_no_non_gate_megastructure = yes
-		#}
+		# custom_tooltip = {
+		# 	fail_text = "requires_no_existing_megastructure"
+		# 	has_no_non_gate_megastructure = yes
+		# }
 		custom_tooltip = {
 			fail_text = "requires_surveyed_system"
 			NOT = {
@@ -42,6 +44,23 @@ interstellar_assembly_0 = {
 				}
 			}
 		}
+		# custom_tooltip = {
+		# 	fail_text = "requires_no_existing_interstellar_assembly"
+		# 	from = {
+		# 		OR = {
+		# 			has_relic = r_contingency_core
+		# 			NOT = { has_country_flag = built_interstellar_assembly_site }
+		# 		}
+		# 	}
+		# }
+		# custom_tooltip = {
+		# 	fail_text = "requires_no_existing_interstellar_assembly_two"
+		# 	from = { NOT = { has_country_flag = built_interstellar_assembly_site_contingency } }
+		# }
+		# custom_tooltip = {
+		# 	fail_text = "requires_no_existing_interstellar_assembly_two"
+		# 	from = { NOT = { has_country_flag = built_interstellar_assembly_site_contingency } }
+		# }
 		#custom_tooltip = {
 		#	fail_text = "requires_capital_system"
 		#	from.capital_scope.solar_system = { is_same_value = root }
@@ -81,6 +100,10 @@ interstellar_assembly_0 = {
 				fail_text = "requires_not_ring_world"
 				is_ringworld = no
 			}
+			# custom_tooltip = {
+			# 	fail_text = "requires_no_existing_megastructure"
+			# 	NOT = { has_planet_flag = megastructure }
+			# }
 		}
 	}
 

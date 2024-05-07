@@ -22,15 +22,17 @@ strategic_coordination_center_0 = {
 	prerequisites = { "tech_strategic_coordination" }
 
 	possible = {
+		hidden_trigger = {
 		exists = starbase
+		}
 		custom_tooltip = {
 			fail_text = "requires_inside_border"
 			is_inside_border = from
 		}
-		#custom_tooltip = {
-		#	fail_text = "requires_no_existing_megastructure"
-		#	has_no_non_gate_megastructure = yes
-		#}
+		# custom_tooltip = {
+		# 	fail_text = "requires_no_existing_megastructure"
+		# 	has_no_non_gate_megastructure = yes
+		# }
 		custom_tooltip = {
 			fail_text = "requires_surveyed_system"
 			NOT = {
@@ -42,6 +44,19 @@ strategic_coordination_center_0 = {
 				}
 			}
 		}
+		# custom_tooltip = {
+		# 	fail_text = "requires_no_existing_strategic_coordination_center"
+		# 	from = {
+		# 		OR = {
+		# 			has_relic = r_contingency_core
+		# 			NOT = { has_country_flag = built_strategic_coordination_center_site }
+		# 		}
+		# 	}
+		# }
+		# custom_tooltip = {
+		# 	fail_text = "requires_no_existing_strategic_coordination_center_two"
+		# 	from = { NOT = { has_country_flag = built_strategic_coordination_center_site_contingency } }
+		# }
 	}
 
 	placement_rules = {
@@ -77,6 +92,10 @@ strategic_coordination_center_0 = {
 				fail_text = "requires_not_ring_world"
 				is_ringworld = no
 			}
+			# custom_tooltip = {
+			# 	fail_text = "requires_no_existing_megastructure"
+			# 	NOT = { has_planet_flag = megastructure }
+			# }
 		}
 	}
 

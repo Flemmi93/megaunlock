@@ -1,5 +1,5 @@
 # see README.txt for example
-
+#modded
 ring_world_1 = {
 	entity = "construction_platform_entity"
 	construction_entity = "construction_platform_entity"
@@ -24,7 +24,9 @@ ring_world_1 = {
 	prerequisites = { "tech_ring_world" }
 
 	possible = {
+		hidden_trigger = {
 		exists = starbase
+		}
 		custom_tooltip = {
 			fail_text = "requires_inside_border"
 			is_inside_border = from
