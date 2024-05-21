@@ -46,14 +46,14 @@ matter_decompressor_0 = {
 				}
 			}
 		}
-		custom_tooltip = {
-			fail_text = "requires_no_habitable_planets"
-			NOT = {
-				any_system_planet = {
-					colonizable_planet = yes
-				}
-			}
-		}
+		# custom_tooltip = {
+		# 	fail_text = "requires_no_habitable_planets"
+		# 	NOT = {
+		# 		any_system_planet = {
+		# 			colonizable_planet = yes
+		# 		}
+		# 	}
+		# }
 		custom_tooltip = {
 			fail_text = "requires_black_hole"
 			is_star_class = sc_black_hole

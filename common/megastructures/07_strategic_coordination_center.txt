@@ -88,10 +88,10 @@ strategic_coordination_center_0 = {
 				fail_text = "requires_not_astral_scar"
 				is_astral_scar = no
 			}
-			custom_tooltip = {
-				fail_text = "requires_not_ring_world"
-				is_ringworld = no
-			}
+			# custom_tooltip = {
+			# 	fail_text = "requires_not_ring_world"
+			# 	is_ringworld = no
+			# }
 			# custom_tooltip = {
 			# 	fail_text = "requires_no_existing_megastructure"
 			# 	NOT = { has_planet_flag = megastructure }

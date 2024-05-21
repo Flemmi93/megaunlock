@@ -29,28 +29,28 @@ dyson_sphere_0 = {
 			fail_text = "requires_inside_border"
 			is_inside_border = from
 		}
-		custom_tooltip = {
-			fail_text = "requires_no_existing_dyson_sphere"
-			from = {
-				OR = {
-					has_relic = r_contingency_core
-					NOT = { has_country_flag = built_dyson_sphere }
-				}
-			}
-		}
+		# custom_tooltip = {
+		# 	fail_text = "requires_no_existing_dyson_sphere"
+		# 	from = {
+		# 		OR = {
+		# 			has_relic = r_contingency_core
+		# 			NOT = { has_country_flag = built_dyson_sphere }
+		# 		}
+		# 	}
+		# }
 		custom_tooltip = {
 			fail_text = "requires_no_machine_age"
 			from = { has_machine_age_dlc = no }
 		}
-		custom_tooltip = {
-			fail_text = "requires_no_existing_dyson_sphere_two"
-			from = {
-				NOR = {
-					has_country_flag = built_dyson_sphere_contingency
-					has_country_flag = built_dyson_sphere_contingency_swarm
-				}
-			}
-		}
+		# custom_tooltip = {
+		# 	fail_text = "requires_no_existing_dyson_sphere_two"
+		# 	from = {
+		# 		NOR = {
+		# 			has_country_flag = built_dyson_sphere_contingency
+		# 			has_country_flag = built_dyson_sphere_contingency_swarm
+		# 		}
+		# 	}
+		# }
 		custom_tooltip = {
 			fail_text = "requires_surveyed_system"
 			NOT = {
@@ -81,14 +81,22 @@ dyson_sphere_0 = {
 		}
 		custom_tooltip = {
 			fail_text = "requires_no_colonies"
-			NOT = {
-				any_system_planet = {
-					is_colony = yes
-					is_artificial = no
-					exists = owner
-					owner = {
-						is_primitive = no
+			OR = {
+				NOT = {
+					any_system_planet = {
+						is_colony = yes
+						is_artificial = no
+						exists = owner
+						owner = {
+							is_primitive = no
+						}
 					}
+				}
+				NOR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_pacifist
+					has_ethic = ethic_fanatic_egalitarian
 				}
 			}
 		}
@@ -108,14 +116,14 @@ dyson_sphere_0 = {
 				}
 			}
 		}
-		custom_tooltip = {
-			fail_text = "requires_no_black_hole_neutron_star_pulsar"
-			NOT = {
-				is_star_class = sc_black_hole
-				is_star_class = sc_neutron_star
-				is_star_class = sc_pulsar
-			}
-		}
+		# custom_tooltip = {
+		# 	fail_text = "requires_no_black_hole_neutron_star_pulsar"
+		# 	NOT = {
+		# 		is_star_class = sc_black_hole
+		# 		is_star_class = sc_neutron_star
+		# 		is_star_class = sc_pulsar
+		# 	}
+		# }
 		#custom_tooltip = {
 		#	fail_text = "requires_no_binary_trinary"
 		#	NOR = {
@@ -241,14 +249,22 @@ dyson_sphere_1 = {
 		}
 		custom_tooltip = {
 			fail_text = "requires_no_colonies"
-			NOT = {
-				any_system_planet = {
-					is_colony = yes
-					is_artificial = no
-					exists = owner
-					owner = {
-						is_primitive = no
+			OR = {
+				NOT = {
+					any_system_planet = {
+						is_colony = yes
+						is_artificial = no
+						exists = owner
+						owner = {
+							is_primitive = no
+						}
 					}
+				}
+				NOR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_pacifist
+					has_ethic = ethic_fanatic_egalitarian
 				}
 			}
 		}
@@ -331,17 +347,26 @@ dyson_sphere_2 = {
 		}
 		custom_tooltip = {
 			fail_text = "requires_no_colonies"
-			NOT = {
-				any_system_planet = {
-					OR = {
-						has_colony_progress > 0
-						is_colony = yes
+			OR = {
+				NOT = {
+					any_system_planet = {
+						OR = {
+							has_colony_progress > 0
+							is_colony = yes
+						}
+						is_artificial = no
+						exists = owner
+						owner = {
+							is_primitive = no
+						}
 					}
-					is_artificial = no
-					exists = owner
-					owner = {
-						is_primitive = no
-					}
+				}
+				
+				NOR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_pacifist
+					has_ethic = ethic_fanatic_egalitarian
 				}
 			}
 		}
@@ -475,14 +500,23 @@ dyson_sphere_3 = {
 		}
 		custom_tooltip = {
 			fail_text = "requires_no_colonies"
-			NOT = {
-				any_system_planet = {
-					is_colony = yes
-					is_artificial = no
-					exists = owner
-					owner = {
-						is_primitive = no
+			OR = {
+				NOT = {
+					any_system_planet = {
+						is_colony = yes
+						is_artificial = no
+						exists = owner
+						owner = {
+							is_primitive = no
+						}
 					}
+				}
+				
+				NOR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_pacifist
+					has_ethic = ethic_fanatic_egalitarian
 				}
 			}
 		}
@@ -570,14 +604,23 @@ dyson_sphere_4 = {
 		}
 		custom_tooltip = {
 			fail_text = "requires_no_colonies"
-			NOT = {
-				any_system_planet = {
-					is_colony = yes
-					is_artificial = no
-					exists = owner
-					owner = {
-						is_primitive = no
+			OR = {
+				NOT = {
+					any_system_planet = {
+						is_colony = yes
+						is_artificial = no
+						exists = owner
+						owner = {
+							is_primitive = no
+						}
 					}
+				}
+				
+				NOR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_pacifist
+					has_ethic = ethic_fanatic_egalitarian
 				}
 			}
 		}
@@ -667,14 +710,23 @@ dyson_sphere_5 = {
 		}
 		custom_tooltip = {
 			fail_text = "requires_no_colonies"
-			NOT = {
-				any_system_planet = {
-					is_colony = yes
-					is_artificial = no
-					exists = owner
-					owner = {
-						is_primitive = no
+			OR = {
+				NOT = {
+					any_system_planet = {
+						is_colony = yes
+						is_artificial = no
+						exists = owner
+						owner = {
+							is_primitive = no
+						}
 					}
+				}
+				
+				NOR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_pacifist
+					has_ethic = ethic_fanatic_egalitarian
 				}
 			}
 		}
@@ -816,14 +868,23 @@ dyson_sphere_restored = {
 		}
 		custom_tooltip = {
 			fail_text = "requires_no_colonies"
-			NOT = {
-				any_system_planet = {
-					is_colony = yes
-					is_artificial = no
-					exists = owner
-					owner = {
-						is_primitive = no
+			OR = {
+				NOT = {
+					any_system_planet = {
+						is_colony = yes
+						is_artificial = no
+						exists = owner
+						owner = {
+							is_primitive = no
+						}
 					}
+				}
+				
+				NOR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_pacifist
+					has_ethic = ethic_fanatic_egalitarian
 				}
 			}
 		}
@@ -1055,14 +1116,23 @@ dyson_sphere_disco_restored = {
 		}
 		custom_tooltip = {
 			fail_text = "requires_no_colonies"
-			NOT = {
-				any_system_planet = {
-					is_colony = yes
-					is_artificial = no
-					exists = owner
-					owner = {
-						is_primitive = no
+			OR = {
+				NOT = {
+					any_system_planet = {
+						is_colony = yes
+						is_artificial = no
+						exists = owner
+						owner = {
+							is_primitive = no
+						}
 					}
+				}
+				
+				NOR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_pacifist
+					has_ethic = ethic_fanatic_egalitarian
 				}
 			}
 		}
