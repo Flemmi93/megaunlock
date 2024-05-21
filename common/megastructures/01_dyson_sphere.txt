@@ -93,10 +93,12 @@ dyson_sphere_0 = {
 					}
 				}
 				NOR = {
-					has_ethic = ethic_pacifist
-					has_ethic = ethic_egalitarian
-					has_ethic = ethic_fanatic_pacifist
-					has_ethic = ethic_fanatic_egalitarian
+					owner = {
+						has_ethic = ethic_pacifist
+						has_ethic = ethic_egalitarian
+						has_ethic = ethic_fanatic_pacifist
+						has_ethic = ethic_fanatic_egalitarian
+					}
 				}
 			}
 		}
@@ -261,10 +263,12 @@ dyson_sphere_1 = {
 					}
 				}
 				NOR = {
-					has_ethic = ethic_pacifist
-					has_ethic = ethic_egalitarian
-					has_ethic = ethic_fanatic_pacifist
-					has_ethic = ethic_fanatic_egalitarian
+					owner = {
+						has_ethic = ethic_pacifist
+						has_ethic = ethic_egalitarian
+						has_ethic = ethic_fanatic_pacifist
+						has_ethic = ethic_fanatic_egalitarian
+					}
 				}
 			}
 		}
@@ -314,20 +318,20 @@ dyson_sphere_2 = {
 	build_time = 3600
 	use_planet_resource = yes
 	possible = {
-		custom_tooltip = {
-			fail_text = "requires_no_existing_dyson_sphere"
-			from = {
-				OR = {
-					has_relic = r_contingency_core
-					NOT = { has_country_flag = built_dyson_sphere_swarm }
-				}
-			}
-		}
-		custom_tooltip = {
-			fail_text = "requires_no_existing_dyson_sphere_two"
-			from = {
-				NOT = { has_country_flag = built_dyson_sphere_contingency_swarm } }
-		}
+		# custom_tooltip = {
+		# 	fail_text = "requires_no_existing_dyson_sphere"
+		# 	from = {
+		# 		OR = {
+		# 			has_relic = r_contingency_core
+		# 			NOT = { has_country_flag = built_dyson_sphere_swarm }
+		# 		}
+		# 	}
+		# }
+		# custom_tooltip = {
+		# 	fail_text = "requires_no_existing_dyson_sphere_two"
+		# 	from = {
+		# 		NOT = { has_country_flag = built_dyson_sphere_contingency_swarm } }
+		# }
 		custom_tooltip = {
 			fail_text = "requires_no_arc_furnace"
 			system_has_arc_furnace = no
@@ -363,10 +367,12 @@ dyson_sphere_2 = {
 				}
 				
 				NOR = {
-					has_ethic = ethic_pacifist
-					has_ethic = ethic_egalitarian
-					has_ethic = ethic_fanatic_pacifist
-					has_ethic = ethic_fanatic_egalitarian
+					owner = {
+						has_ethic = ethic_pacifist
+						has_ethic = ethic_egalitarian
+						has_ethic = ethic_fanatic_pacifist
+						has_ethic = ethic_fanatic_egalitarian
+					}
 				}
 			}
 		}
@@ -513,10 +519,12 @@ dyson_sphere_3 = {
 				}
 				
 				NOR = {
-					has_ethic = ethic_pacifist
-					has_ethic = ethic_egalitarian
-					has_ethic = ethic_fanatic_pacifist
-					has_ethic = ethic_fanatic_egalitarian
+					owner = {
+						has_ethic = ethic_pacifist
+						has_ethic = ethic_egalitarian
+						has_ethic = ethic_fanatic_pacifist
+						has_ethic = ethic_fanatic_egalitarian
+					}
 				}
 			}
 		}
@@ -617,10 +625,12 @@ dyson_sphere_4 = {
 				}
 				
 				NOR = {
-					has_ethic = ethic_pacifist
-					has_ethic = ethic_egalitarian
-					has_ethic = ethic_fanatic_pacifist
-					has_ethic = ethic_fanatic_egalitarian
+					owner = {
+						has_ethic = ethic_pacifist
+						has_ethic = ethic_egalitarian
+						has_ethic = ethic_fanatic_pacifist
+						has_ethic = ethic_fanatic_egalitarian
+					}
 				}
 			}
 		}
@@ -723,10 +733,12 @@ dyson_sphere_5 = {
 				}
 				
 				NOR = {
-					has_ethic = ethic_pacifist
-					has_ethic = ethic_egalitarian
-					has_ethic = ethic_fanatic_pacifist
-					has_ethic = ethic_fanatic_egalitarian
+					owner = {
+						has_ethic = ethic_pacifist
+						has_ethic = ethic_egalitarian
+						has_ethic = ethic_fanatic_pacifist
+						has_ethic = ethic_fanatic_egalitarian
+					}
 				}
 			}
 		}
@@ -881,10 +893,12 @@ dyson_sphere_restored = {
 				}
 				
 				NOR = {
-					has_ethic = ethic_pacifist
-					has_ethic = ethic_egalitarian
-					has_ethic = ethic_fanatic_pacifist
-					has_ethic = ethic_fanatic_egalitarian
+					owner = {
+						has_ethic = ethic_pacifist
+						has_ethic = ethic_egalitarian
+						has_ethic = ethic_fanatic_pacifist
+						has_ethic = ethic_fanatic_egalitarian
+					}
 				}
 			}
 		}
@@ -1129,10 +1143,12 @@ dyson_sphere_disco_restored = {
 				}
 				
 				NOR = {
-					has_ethic = ethic_pacifist
-					has_ethic = ethic_egalitarian
-					has_ethic = ethic_fanatic_pacifist
-					has_ethic = ethic_fanatic_egalitarian
+					owner = {
+						has_ethic = ethic_pacifist
+						has_ethic = ethic_egalitarian
+						has_ethic = ethic_fanatic_pacifist
+						has_ethic = ethic_fanatic_egalitarian
+					}
 				}
 			}
 		}
