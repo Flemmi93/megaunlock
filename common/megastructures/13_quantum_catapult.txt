@@ -29,10 +29,26 @@ quantum_catapult_0 = {
 			fail_text = "requires_inside_border"
 			is_inside_border = from
 		}
-		# custom_tooltip = {
-		# 	fail_text = "requires_no_existing_megastructure"
-		# 	has_no_non_gate_megastructure = yes
-		# }
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			NOT = {
+				root.solar_system = {
+					any_system_megastructure = {
+						OR = {
+							is_megastructure_type = quantum_catapult_0
+							is_megastructure_type = quantum_catapult_1
+							is_megastructure_type = quantum_catapult_2
+							is_megastructure_type = quantum_catapult_3
+							is_megastructure_type = quantum_catapult_ruined
+							is_megastructure_type = quantum_catapult_restored
+							is_megastructure_type = quantum_catapult_ruined_slingshot
+							is_megastructure_type = quantum_catapult_restored_slingshot
+							is_megastructure_type = quantum_catapult_improved_slingshot
+						}
+					}
+				}
+			}
+		}
 		custom_tooltip = {
 			fail_text = "requires_surveyed_system"
 			NOT = {
