@@ -58,27 +58,26 @@ matter_decompressor_0 = {
 			fail_text = "requires_black_hole"
 			is_star_class = sc_black_hole
 		}
-		# custom_tooltip = {
-		# 	fail_text = "requires_no_existing_matter_decompressor"
-		# 	from = {
-		# 		OR = {
-		# 			has_relic = r_contingency_core
-		# 			NOT = { has_country_flag = built_matter_decompressor_site }
-		# 		}
-		# 	}
-		# }
+		custom_tooltip = {
+			fail_text = "requires_no_existing_matter_decompressor"
+			NOT = { has_star_flag = matter_decompressor_built }
+		}
 		# custom_tooltip = {
 		# 	fail_text = "requires_no_existing_matter_decompressor_two"
 		# 	from = { NOT = { has_country_flag = built_matter_decompressor_site_contingency } }
 		# }
-		# custom_tooltip = {
-		# 	fail_text = "requires_no_existing_megastructure"
-		# 	has_no_non_gate_megastructure = yes
-		# }
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			has_no_non_gate_megastructure = yes
+		}
 	}
 
 	placement_rules = {
 		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOT = { has_planet_flag = has_matter_decompressor }
+			}
 			# custom_tooltip = {
 			# 	fail_text = "must_build_around_star"
 			# 	is_star = yes
@@ -126,6 +125,7 @@ matter_decompressor_0 = {
 			set_country_flag = built_matter_decompressor_site
 		}
 		fromfrom.planet = {
+			set_planet_flag = has_matter_decompressor
 			if = {
 				limit = { has_orbital_station = yes }
 				orbital_station = {

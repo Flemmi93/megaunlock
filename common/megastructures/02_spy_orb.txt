@@ -32,10 +32,10 @@ spy_orb_0 = {
 			fail_text = "requires_inside_border"
 			is_inside_border = from
 		}
-		# custom_tooltip = {
-		# 	fail_text = "requires_no_existing_megastructure"
-		# 	# has_no_non_gate_megastructure = yes
-		# }
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			NOT = { has_star_flag = spy_orb_built }
+		}
 		custom_tooltip = {
 			fail_text = "requires_surveyed_system"
 			NOT = {
@@ -95,10 +95,10 @@ spy_orb_0 = {
 			# 	fail_text = "requires_not_ring_world"
 			# 	is_ringworld = no
 			# }
-			# custom_tooltip = {
-			# 	fail_text = "requires_no_existing_megastructure"
-			# 	NOT = { has_planet_flag = megastructure }
-			# }
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOT = { has_planet_flag = has_megastructure }
+			}
 		}
 	}
 
@@ -135,9 +135,20 @@ spy_orb_0 = {
 		}
 	}
 
-	on_build_start = {}
-	on_build_cancel = {}
+	on_build_start = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+		}
+	}
+	on_build_cancel = {
+		fromfrom.planet = {
+			remove_planet_flag = has_megastructure
+		}
+	}
 	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+		}
 		set_star_flag = spy_orb_built
 		from = {
 			if = {
