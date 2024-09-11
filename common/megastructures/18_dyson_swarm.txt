@@ -139,6 +139,25 @@ dyson_swarm_1 = {
 				}
 			}
 		}
+		modifier = {
+			factor = 0.5
+			any_neighbor_system = {
+				exists = owner
+				owner = { is_same_value = from }
+				OR = {
+					has_megastructure = dyson_swarm_1
+					has_megastructure = dyson_swarm_2
+					has_megastructure = dyson_swarm_3
+					has_megastructure = dyson_sphere_0
+					has_megastructure = dyson_sphere_1
+					has_megastructure = dyson_sphere_2
+					has_megastructure = dyson_sphere_3
+					has_megastructure = dyson_sphere_4
+					has_megastructure = dyson_sphere_5
+					has_megastructure = dyson_sphere_restored
+				}
+			}
+		}
 	}
 
 	on_build_start = {
