@@ -24,12 +24,16 @@ think_tank_0 = {
 			energy = 5
 		}
 	}
+
+	custom_tooltip_requirements = "MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_ONE_PER_COUNTRY"
 	construction_blocks_and_blocked_by = none
 
 	prerequisites = { "tech_science_nexus" }
 
 	possible = {
-		exists = starbase
+		hidden_trigger = {
+			exists = starbase
+		}
 		custom_tooltip = {
 			fail_text = "requires_inside_border"
 			is_inside_border = from
