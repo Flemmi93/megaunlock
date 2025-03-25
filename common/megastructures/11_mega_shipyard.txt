@@ -36,7 +36,7 @@ mega_shipyard_0 = {
 		# 	from = {
 		# 		OR = {
 		# 			has_relic = r_contingency_core
-		# 			NOT = { has_country_flag = built_mega_shipyard_site }
+		#			NOT = { has_country_flag = built_mega_shipyard_site }
 		# 		}
 		# 	}
 		# }

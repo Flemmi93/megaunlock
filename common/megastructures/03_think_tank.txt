@@ -38,6 +38,26 @@ think_tank_0 = {
 			fail_text = "requires_inside_border"
 			is_inside_border = from
 		}
+		if = {
+			limit = {
+				exists = owner 
+				owner = { is_ai = yes }
+			}
+			count_megastructure = {
+				count < 4
+				limit = {
+					OR = {
+						is_megastructure_type = think_tank_0
+						is_megastructure_type = think_tank_1
+						is_megastructure_type = think_tank_2
+						is_megastructure_type = think_tank_3
+						is_megastructure_type = think_tank_4
+						is_megastructure_type = think_tank_restored
+					}
+					
+				}
+			}
+		}
 		# custom_tooltip = {
 		# 	fail_text = "requires_no_existing_megastructure"
 		# 	has_no_non_gate_megastructure = yes
