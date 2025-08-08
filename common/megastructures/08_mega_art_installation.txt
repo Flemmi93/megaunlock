@@ -9,8 +9,27 @@ mega_art_installation_0 = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 5000
 			unity = 2500
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 5000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
 		}
 
 		upkeep = {
@@ -18,14 +37,14 @@ mega_art_installation_0 = {
 		}
 	}
 
-	custom_tooltip_requirements = "MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_ONE_PER_COUNTRY"
 	construction_blocks_and_blocked_by = none
+	custom_tooltip_requirements = "MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_ONE_PER_COUNTRY"
 
 	prerequisites = { "tech_mega_art" }
 
 	possible = {
 		hidden_trigger = {
-		exists = starbase
+			exists = starbase
 		}
 		custom_tooltip = {
 			fail_text = "requires_inside_border"
@@ -33,17 +52,18 @@ mega_art_installation_0 = {
 		}
 		custom_tooltip = {
 			fail_text = "requires_no_existing_megastructure"
-			has_no_non_gate_megastructure = yes
+			if = {
+				limit = {
+					from = { is_ai = yes }
+				} # makes it so the ai doesnt spam these around to a crazy degree.
+				has_no_non_gate_megastructure = yes
+			}
 			NOT = {
 				any_system_planet = {
 					is_planet_class = pc_cosmogenesis_world
 				}
 			}
 		}
-		# custom_tooltip = {
-		# 	fail_text = "requires_no_existing_megastructure"
-		# 	has_no_non_gate_megastructure = yes
-		# }
 		custom_tooltip = {
 			fail_text = "requires_surveyed_system"
 			NOT = {
@@ -56,19 +76,19 @@ mega_art_installation_0 = {
 			}
 		}
 
-		# custom_tooltip = {
-		# 	fail_text = "requires_no_existing_mega_art_installation"
-		# 	from = {
-		# 		OR = {
-		# 			has_relic = r_contingency_core
-		# 			NOT = { has_country_flag = built_mega_art_installation }
-		# 		}
-		# 	}
-		# }
-		# custom_tooltip = {
-		# 	fail_text = "requires_no_existing_mega_art_installation_two"
-		# 	from = { NOT = { has_country_flag = built_mega_art_installation_contingency } }
-		# }
+		custom_tooltip = {
+			fail_text = "requires_no_existing_mega_art_installation"
+			from = {
+				OR = {
+					has_relic = r_contingency_core
+					NOT = { has_country_flag = built_mega_art_installation }
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_mega_art_installation_two"
+			from = { NOT = { has_country_flag = built_mega_art_installation_contingency } }
+		}
 	}
 
 	placement_rules = {
@@ -92,21 +112,26 @@ mega_art_installation_0 = {
 					is_moon = yes
 				}
 			}
-			custom_tooltip = {
-				fail_text = "requires_not_star"
-				is_star = no
-			}
-			custom_tooltip = {
-				fail_text = "requires_not_astral_scar"
-				is_astral_scar = no
-			}
-			# custom_tooltip = {
-			# 	fail_text = "requires_not_ring_world"
-			# 	is_ringworld = no
-			# }
-			custom_tooltip = {
-				fail_text = "requires_no_existing_megastructure"
-				NOT = { has_planet_flag = has_megastructure }
+			if = {
+				limit = {
+					from = { is_ai = yes }
+				} # makes it so the ai doesnt spam these around to a crazy degree.
+				custom_tooltip = {
+					fail_text = "requires_not_star"
+					is_star = no
+				}
+				custom_tooltip = {
+					fail_text = "requires_not_astral_scar"
+					is_astral_scar = no
+				}
+				custom_tooltip = {
+					fail_text = "requires_not_ring_world"
+					is_ringworld = no
+				}
+				custom_tooltip = {
+					fail_text = "requires_no_existing_megastructure"
+					NOT = { has_planet_flag = megastructure }
+				}
 			}
 		}
 	}
@@ -132,20 +157,9 @@ mega_art_installation_0 = {
 		}
 	}
 
-	on_build_start = {
-		fromfrom.planet = {
-			set_planet_flag = has_megastructure
-		}
-	}
-	on_build_cancel = {
-		fromfrom.planet = {
-			remove_planet_flag = has_megastructure
-		}
-	}
+	on_build_start = {}
+	on_build_cancel = {}
 	on_build_complete = {
-		fromfrom.planet = {
-			set_planet_flag = has_megastructure
-		}
 		from = {
 			if = {
 				limit = {
@@ -170,8 +184,27 @@ mega_art_installation_1 = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 15000
 			unity = 2500
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 15000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 15000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 15000
+			mult = @halved_alloy_to_food_cost_ratio
 		}
 
 		produces = {
@@ -182,7 +215,6 @@ mega_art_installation_1 = {
 			energy = 10
 		}
 	}
-	construction_blocks_and_blocked_by = none
 
 	upgrade_from = {
 		mega_art_installation_0
@@ -192,6 +224,7 @@ mega_art_installation_1 = {
 
 	country_modifier = {
 		planet_amenities_mult = 0.05
+		planetary_ascension_cost_mult = -0.05
 	}
 
 	on_build_complete = {
@@ -210,8 +243,27 @@ mega_art_installation_2 = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 15000
 			unity = 2500
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 15000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 15000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 15000
+			mult = @halved_alloy_to_food_cost_ratio
 		}
 
 		produces = {
@@ -222,7 +274,6 @@ mega_art_installation_2 = {
 			energy = 20
 		}
 	}
-	construction_blocks_and_blocked_by = none
 
 	upgrade_from = {
 		mega_art_installation_1
@@ -232,6 +283,7 @@ mega_art_installation_2 = {
 
 	country_modifier = {
 		planet_amenities_mult = 0.10
+		planetary_ascension_cost_mult = -0.1
 	}
 
 	on_build_complete = {
@@ -250,8 +302,27 @@ mega_art_installation_3 = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 15000
 			unity = 2500
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 15000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 15000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 15000
+			mult = @halved_alloy_to_food_cost_ratio
 		}
 
 		produces = {
@@ -262,7 +333,6 @@ mega_art_installation_3 = {
 			energy = 30
 		}
 	}
-	construction_blocks_and_blocked_by = none
 
 	upgrade_from = {
 		mega_art_installation_2
@@ -273,6 +343,7 @@ mega_art_installation_3 = {
 
 	country_modifier = {
 		planet_amenities_mult = 0.15
+		planetary_ascension_cost_mult = -0.15
 	}
 
 	on_build_complete = {
@@ -306,7 +377,6 @@ mega_art_installation_4 = {
 			energy = 30
 		}
 	}
-	construction_blocks_and_blocked_by = none
 
 	upgrade_from = {
 		mega_art_installation_3
@@ -330,6 +400,7 @@ mega_art_installation_4 = {
 
 	country_modifier = {
 		planet_amenities_mult = 0.2
+		planetary_ascension_cost_mult = -0.2
 	}
 
 	on_build_complete = {
@@ -350,7 +421,6 @@ mega_art_installation_permanently_ruined = {
 	entity_offset = { x = -27 y = -27 }
 	show_galactic_map_icon = no
 	show_in_outliner = no
-	construction_blocks_and_blocked_by = none
 
 	potential = {
 		always = no
@@ -364,7 +434,6 @@ mega_art_installation_ruined = {
 	portrait = "GFX_megastructure_construction_background"
 	place_entity_on_planet_plane = no
 	entity_offset = { x = -27 y = -27 }
-	construction_blocks_and_blocked_by = none
 
 	potential = {
 		always = no
@@ -382,8 +451,27 @@ mega_art_installation_restored = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 15000
 			unity = 3200
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 15000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 15000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 15000
+			mult = @halved_alloy_to_food_cost_ratio
 		}
 
 		produces = {
@@ -394,7 +482,6 @@ mega_art_installation_restored = {
 			energy = 30
 		}
 	}
-	construction_blocks_and_blocked_by = none
 
 	upgrade_from = {
 		mega_art_installation_ruined
@@ -406,6 +493,7 @@ mega_art_installation_restored = {
 
 	country_modifier = {
 		planet_amenities_mult = 0.15
+		planetary_ascension_cost_mult = -0.15
 	}
 
 	on_build_complete = {
@@ -460,7 +548,6 @@ mega_art_installation_restored_2 = {
 			energy = 30
 		}
 	}
-	construction_blocks_and_blocked_by = none
 
 	upgrade_from = {
 		mega_art_installation_restored
@@ -471,6 +558,7 @@ mega_art_installation_restored_2 = {
 
 	country_modifier = {
 		planet_amenities_mult = 0.2
+		planetary_ascension_cost_mult = -0.2
 	}
 
 	possible = {

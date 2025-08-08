@@ -13,8 +13,27 @@ dyson_swarm_1 = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 500
 			unity = 1000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 500
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 500
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 500
+			mult = @halved_alloy_to_food_cost_ratio
 		}
 
 		upkeep = {
@@ -125,15 +144,20 @@ dyson_swarm_1 = {
 		# 		is_star_class = sc_pulsar
 		# 	}
 		# }
-		# custom_tooltip = {
-		# 	fail_text = "requires_less_than_x_dyson_swarms"
-		# 	from = {
-		# 		check_variable = {
-		# 			which = dyson_swarm_counter
-		# 			value < value:dyson_swarm_limit
-		# 		}
-		# 	}
-		# }
+		if = {
+			limit = {
+				from = { is_ai = yes }
+			} # makes it so the ai doesnt spam these around to a crazy degree.
+			custom_tooltip = {
+				fail_text = "requires_less_than_x_dyson_swarms"
+				from = {
+					check_variable = {
+						which = dyson_swarm_counter
+						value <= value:dyson_swarm_limit
+					}
+				}
+			}
+		}
 	}
 
 	placement_rules = {
@@ -188,31 +212,9 @@ dyson_swarm_1 = {
 				}
 			}
 		}
-		modifier = {
-			factor = 0.5
-			any_neighbor_system = {
-				exists = owner
-				owner = { is_same_value = from }
-				OR = {
-					has_megastructure = dyson_swarm_1
-					has_megastructure = dyson_swarm_2
-					has_megastructure = dyson_swarm_3
-					has_megastructure = dyson_sphere_0
-					has_megastructure = dyson_sphere_1
-					has_megastructure = dyson_sphere_2
-					has_megastructure = dyson_sphere_3
-					has_megastructure = dyson_sphere_4
-					has_megastructure = dyson_sphere_5
-					has_megastructure = dyson_sphere_restored
-				}
-			}
-		}
 	}
 
 	on_build_start = {
-		fromfrom.planet = {
-			set_planet_flag = has_megastructure
-		}
 		from = {
 			change_variable = {
 				which = dyson_swarm_counter
@@ -221,9 +223,6 @@ dyson_swarm_1 = {
 		}
 	}
 	on_build_cancel = {
-		fromfrom.planet = {
-			remove_planet_flag = has_megastructure
-		}
 		from = {
 			if = {
 				limit = {
@@ -268,8 +267,27 @@ dyson_swarm_2 = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 1000
 			unity = 2500
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 1000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 1000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 1000
+			mult = @halved_alloy_to_food_cost_ratio
 		}
 
 		upkeep = {
@@ -278,6 +296,53 @@ dyson_swarm_2 = {
 	}
 
 	construction_blocks_and_blocked_by = none
+
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+			energy = 1000
+		}
+	}
+
+	dismantle_time = 360
+
+	dismantle_potential = {
+		always = yes
+	}
+
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_dyson_swarm
+		}
+	}
+
+	on_dismantle_complete = {
+		random_system_planet = {
+			limit = {
+				has_modifier = dyson_swarm_2_mod
+			}
+			remove_planet_flag = has_megastructure
+			remove_modifier = dyson_swarm_2_mod
+		}
+		from = {
+			add_resource = {
+				alloys = 1000
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+			if = {
+				limit = {
+					check_variable = {
+						which = dyson_swarm_counter
+						value >= 1
+					}
+				}
+				change_variable = {
+					which = dyson_swarm_counter
+					value = -1
+				}
+			}
+		}
+	}
 
 	upgrade_from = {
 		dyson_swarm_1
@@ -308,7 +373,7 @@ dyson_swarm_3 = {
 	scale_offset = yes
 	place_entity_on_planet_plane = yes
 	use_planet_resource = yes
-		outliner_trigger = {
+	outliner_trigger = {
 		exists = owner
 		system_has_arc_furnace = no
 		NOT = {
@@ -318,24 +383,12 @@ dyson_swarm_3 = {
 		}
 		NOT = {
 			solar_system = {
-				OR = {
-					AND = {
-						any_system_planet = {
-							is_colony = yes
-							is_artificial = no
-							exists = owner
-							owner = {
-								is_primitive = no
-							}
-						}
-					}
-					OR = {
-						owner = {
-							has_ethic = ethic_pacifist
-							has_ethic = ethic_egalitarian
-							has_ethic = ethic_fanatic_pacifist
-							has_ethic = ethic_fanatic_egalitarian
-						}
+				any_system_planet = {
+					is_colony = yes
+					is_artificial = no
+					exists = owner
+					owner = {
+						is_primitive = no
 					}
 				}
 			}
@@ -351,25 +404,25 @@ dyson_swarm_3 = {
 					}
 				}
 			}
-			from = {
+			owner = {
 				has_policy_flag = interference_aggressive
 			}
 		}
 		owner = {
 			has_technology = tech_dyson_sphere
-			# OR = {
-			# 	NOR = {
-			# 		has_country_flag = built_dyson_sphere_swarm
-			# 		has_country_flag = built_dyson_sphere
-			# 	}
-			# 	AND = {
-			# 		has_relic = r_contingency_core
-			# 		NOR = {
-			# 			has_country_flag = built_dyson_sphere_contingency_swarm
-			# 			has_country_flag = built_dyson_sphere_contingency
-			# 		}
-			# 	}
-			# }
+			OR = {
+				NOR = {
+					has_country_flag = built_dyson_sphere_swarm
+					has_country_flag = built_dyson_sphere
+				}
+				AND = {
+					has_relic = r_contingency_core
+					NOR = {
+						has_country_flag = built_dyson_sphere_contingency_swarm
+						has_country_flag = built_dyson_sphere_contingency
+					}
+				}
+			}
 		}
 	}
 
@@ -420,14 +473,55 @@ dyson_swarm_3 = {
 				}
 			}
 		}
+		##Deal with Dyson Sphere flag shenanigans
+		if = {
+			limit = {
+				solar_system = {
+					has_star_flag = dyson_sphere_construction
+				}
+			}
+			from = {
+				if = {
+					limit = {
+						has_country_flag = built_dyson_sphere_contingency_swarm
+					}
+					remove_country_flag = built_dyson_sphere_contingency_swarm
+				}
+				if = {
+					limit = {
+						has_country_flag = built_dyson_sphere_swarm
+					}
+					remove_country_flag = built_dyson_sphere_swarm
+				}
+			}
+		}
 	}
 
 	build_time = 1080 # 3 years
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 1500
 			unity = 5000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 1500
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 1500
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 1500
+			mult = @halved_alloy_to_food_cost_ratio
 		}
 
 		upkeep = {

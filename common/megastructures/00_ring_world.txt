@@ -1,5 +1,5 @@
 # see README.txt for example
-#modded
+
 ring_world_1 = {
 	entity = "construction_platform_entity"
 	construction_entity = "construction_platform_entity"
@@ -10,23 +10,41 @@ ring_world_1 = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 5000
 			influence = 300
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 5000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
 		}
 
 		upkeep = {
 			energy = 5
 		}
 	}
-	
-	#custom_tooltip_requirements = "MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_RING_WORLD"
 	construction_blocks_and_blocked_by = none
+	custom_tooltip_requirements = "MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_RING_WORLD"
 
 	prerequisites = { "tech_ring_world" }
 
 	possible = {
 		hidden_trigger = {
-		exists = starbase
+			exists = starbase
 		}
 		custom_tooltip = {
 			fail_text = "requires_inside_border"
@@ -43,18 +61,28 @@ ring_world_1 = {
 				}
 			}
 		}
-		# custom_tooltip = {
-		# 	fail_text = "requires_no_habitable_planets"
-		# 	NOT = {
-		# 		any_system_planet = {
-		# 			colonizable_planet = yes
-		# 		}
-		# 	}
-		# }
-		# custom_tooltip = {
-		# 	fail_text = "requires_no_black_hole"
-		# 	NOT = { is_star_class = sc_black_hole }
-		# }
+		if = {
+			limit = {
+				from = { is_ai = yes }
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_habitable_planets"
+				NOT = {
+					any_system_planet = {
+						colonizable_planet = yes
+					}
+				}
+			}
+		}
+		if = {
+				limit = {
+					from = { is_ai = yes }
+				}
+				custom_tooltip = {
+					fail_text = "requires_no_black_hole"
+					NOT = { is_star_class = sc_black_hole }
+				}
+			}
 		custom_tooltip = {
 			fail_text = "requires_no_binary_trinary"
 			NOR = {
@@ -77,10 +105,33 @@ ring_world_1 = {
 
 		custom_tooltip = {
 			fail_text = "requires_no_existing_megastructure"
-			NOT = {	has_star_flag = ring_world_built }
+			if = {
+				limit = {
+					from = { is_ai = yes }
+				}
+				has_no_non_gate_megastructure = yes
+			}
 			NOT = {
 				any_system_planet = {
 					is_planet_class = pc_cosmogenesis_world
+				}
+			}
+		}
+		
+		custom_tooltip = {
+			fail_text = "requires_no_arc_furnace"
+			system_has_arc_furnace = no
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_arc_furnace_construction"
+			if = {
+				limit = {
+					system_has_arc_furnace = no
+				}
+				NOT = {
+					solar_system = {
+						has_star_flag = arc_furnace_construction
+					}
 				}
 			}
 		}
@@ -122,20 +173,9 @@ ring_world_1 = {
 		}
 	}
 
-	on_build_start = {
-		fromfrom.planet = {
-			set_planet_flag = has_megastructure
-		}
-	}
-	on_build_cancel = {
-		fromfrom.planet = {
-			remove_planet_flag = has_megastructure
-		}
-	}
+	on_build_start = {}
+	on_build_cancel = {}
 	on_build_complete = {
-		fromfrom.planet = {
-			remove_planet_flag = has_megastructure
-		}
 		set_star_flag = ring_world_built
 	}
 }
@@ -152,30 +192,26 @@ ring_world_2_intermediate = {
 	resources = {
 		category = megastructures
 		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
 			alloys = 10000
 		}
-	}
-	
-	possible = {
-		custom_tooltip = {
-			fail_text = "blocked_by_pre_ftl_policy"
-			if = {
-				limit = {
-					any_system_planet = {
-						exists = owner
-						owner = {
-							is_primitive = yes
-						}
-					}
-				}
-				from = {
-					has_policy_flag = interference_aggressive
-				}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
 			}
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
 		}
 	}
-	
-	construction_blocks_and_blocked_by = none
 
 	upgrade_from = {
 		ring_world_1
@@ -186,20 +222,6 @@ ring_world_2_intermediate = {
 	on_build_start = {}
 	on_build_cancel = {}
 	on_build_complete = {
-		
-		every_system_planet = {
-			limit = {
-				exists = owner
-				is_colony = yes
-			}
-			every_owned_pop = {
-				resettle_pop = {
-					pop = this
-					planet = owner.capital_scope
-				}
-			}
-		}
-
 		every_system_planet = {
 			limit = { is_star = no }
 			remove_planet = yes
@@ -251,8 +273,6 @@ ring_world_2_intermediate = {
 ring_world_2 = {
 	entity = "ringworld_3x_seams_entity"
 	portrait = "GFX_megastructure_construction_background"
-	
-	construction_blocks_and_blocked_by = none
 
 	upgrade_from = {
 		ring_world_2_intermediate
@@ -273,11 +293,26 @@ ring_world_3_intermediate = {
 	resources = {
 		category = megastructures
 		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
 			alloys = 10000
 		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
 	}
-	
-	construction_blocks_and_blocked_by = none
 
 	upgrade_from = {
 		ring_world_2
@@ -290,6 +325,7 @@ ring_world_3_intermediate = {
 	on_build_complete = {
 		from = {
 			set_country_flag = has_built_or_repaired_megastructure
+			set_country_flag = has_ring_world
 		}
 
 		spawn_planet = {
@@ -393,8 +429,6 @@ ring_world_3_intermediate = {
 ring_world_ruined = {
 	entity = "ringworld_destroyed_entity"
 	portrait = "GFX_megastructure_construction_background"
-	
-	construction_blocks_and_blocked_by = none
 
 	potential = {
 		always = no
@@ -412,11 +446,26 @@ ring_world_restored = {
 	resources = {
 		category = megastructures
 		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
 			alloys = 10000
 		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
 	}
-	
-	construction_blocks_and_blocked_by = none
 
 	upgrade_from = {
 		ring_world_ruined
@@ -486,7 +535,7 @@ ring_world_restored = {
 		spawn_planet = {
 			class = "pc_ringworld_seam"
 			location = fromfrom
-			
+
 			init_effect = {
 				set_name = "NAME_Ring_Section"
 				set_planet_entity = {
@@ -526,6 +575,7 @@ ring_world_restored = {
 		from = {
 			set_country_flag = has_built_or_repaired_megastructure
 			country_event = { id = utopia.2017 }
+			set_country_flag = has_ring_world
 		}
 		if = {
 			limit = {

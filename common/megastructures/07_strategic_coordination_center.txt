@@ -12,20 +12,40 @@ strategic_coordination_center_0 = {
 			alloys = 5000
 			unity = 2500
 		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 5000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
 
 		upkeep = {
 			energy = 5
 		}
 	}
 
-	custom_tooltip_requirements = "MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_ONE_PER_COUNTRY"
 	construction_blocks_and_blocked_by = none
+	custom_tooltip_requirements = "MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_ONE_PER_COUNTRY"
 
 	prerequisites = { "tech_strategic_coordination" }
 
 	possible = {
 		hidden_trigger = {
-		exists = starbase
+			exists = starbase
 		}
 		custom_tooltip = {
 			fail_text = "requires_inside_border"
@@ -33,17 +53,18 @@ strategic_coordination_center_0 = {
 		}
 		custom_tooltip = {
 			fail_text = "requires_no_existing_megastructure"
-			has_no_non_gate_megastructure = yes
+			if = {
+				limit = {
+					from = { is_ai = yes }
+				} # makes it so the ai doesnt spam these around to a crazy degree.
+				has_no_non_gate_megastructure = yes
+			}
 			NOT = {
 				any_system_planet = {
 					is_planet_class = pc_cosmogenesis_world
 				}
 			}
 		}
-		# custom_tooltip = {
-		# 	fail_text = "requires_no_existing_megastructure"
-		# 	has_no_non_gate_megastructure = yes
-		# }
 		custom_tooltip = {
 			fail_text = "requires_surveyed_system"
 			NOT = {
@@ -55,19 +76,19 @@ strategic_coordination_center_0 = {
 				}
 			}
 		}
-		# custom_tooltip = {
-		# 	fail_text = "requires_no_existing_strategic_coordination_center"
-		# 	from = {
-		# 		OR = {
-		# 			has_relic = r_contingency_core
-		# 			NOT = { has_country_flag = built_strategic_coordination_center_site }
-		# 		}
-		# 	}
-		# }
-		# custom_tooltip = {
-		# 	fail_text = "requires_no_existing_strategic_coordination_center_two"
-		# 	from = { NOT = { has_country_flag = built_strategic_coordination_center_site_contingency } }
-		# }
+		custom_tooltip = {
+			fail_text = "requires_no_existing_strategic_coordination_center"
+			from = {
+				OR = {
+					has_relic = r_contingency_core
+					NOT = { has_country_flag = built_strategic_coordination_center_site }
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_strategic_coordination_center_two"
+			from = { NOT = { has_country_flag = built_strategic_coordination_center_site_contingency } }
+		}
 	}
 
 	placement_rules = {
@@ -91,21 +112,26 @@ strategic_coordination_center_0 = {
 					is_moon = yes
 				}
 			}
-			custom_tooltip = {
-				fail_text = "requires_not_star"
-				is_star = no
-			}
-			custom_tooltip = {
-				fail_text = "requires_not_astral_scar"
-				is_astral_scar = no
-			}
-			# custom_tooltip = {
-			# 	fail_text = "requires_not_ring_world"
-			# 	is_ringworld = no
-			# }
-			custom_tooltip = {
-				fail_text = "requires_no_existing_megastructure"
-				NOT = { has_planet_flag = has_megastructure }
+			if = {
+				limit = {
+					from = { is_ai = yes }
+				} # makes it so the ai doesnt spam these around to a crazy degree.
+				custom_tooltip = {
+					fail_text = "requires_not_star"
+					is_star = no
+				}
+				custom_tooltip = {
+					fail_text = "requires_not_astral_scar"
+					is_astral_scar = no
+				}
+				custom_tooltip = {
+					fail_text = "requires_not_ring_world"
+					is_ringworld = no
+				}
+				custom_tooltip = {
+					fail_text = "requires_no_existing_megastructure"
+					NOT = { has_planet_flag = megastructure }
+				}
 			}
 		}
 	}
@@ -131,20 +157,9 @@ strategic_coordination_center_0 = {
 		}
 	}
 
-	on_build_start = {
-		fromfrom.planet = {
-			set_planet_flag = has_megastructure
-		}
-	}
-	on_build_cancel = {
-		fromfrom.planet = {
-			remove_planet_flag = has_megastructure
-		}
-	}
+	on_build_start = {}
+	on_build_cancel = {}
 	on_build_complete = {
-		fromfrom.planet = {
-			set_planet_flag = has_megastructure
-		}
 		from = {
 			if = {
 				limit = {
@@ -169,15 +184,33 @@ strategic_coordination_center_1 = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 15000
 			unity = 2500
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 15000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 15000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 15000
+			mult = @halved_alloy_to_food_cost_ratio
 		}
 
 		upkeep = {
 			energy = 25
 		}
 	}
-	construction_blocks_and_blocked_by = none
 	upgrade_from = {
 		strategic_coordination_center_0
 	}
@@ -209,15 +242,33 @@ strategic_coordination_center_2 = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 15000
 			unity = 2500
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 15000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 15000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 15000
+			mult = @halved_alloy_to_food_cost_ratio
 		}
 
 		upkeep = {
 			energy = 50
 		}
 	}
-	construction_blocks_and_blocked_by = none
 
 	upgrade_from = {
 		strategic_coordination_center_1
@@ -249,15 +300,33 @@ strategic_coordination_center_3 = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 15000
 			unity = 2500
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 15000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 15000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 15000
+			mult = @halved_alloy_to_food_cost_ratio
 		}
 
 		upkeep = {
 			energy = 75
 		}
 	}
-	construction_blocks_and_blocked_by = none
 
 	upgrade_from = {
 		strategic_coordination_center_2
@@ -290,7 +359,6 @@ strategic_coordination_center_permanently_ruined = {
 	place_entity_on_planet_plane = no
 	entity_offset = { x = -27 y = -27 }
 	show_galactic_map_icon = no
-	construction_blocks_and_blocked_by = none
 	show_in_outliner = no
 
 	potential = { always = no }
@@ -303,7 +371,6 @@ strategic_coordination_center_ruined = {
 	portrait = "GFX_megastructure_construction_background"
 	place_entity_on_planet_plane = no
 	entity_offset = { x = -27 y = -27 }
-	construction_blocks_and_blocked_by = none
 
 	potential = { always = no }
 }
@@ -319,15 +386,33 @@ strategic_coordination_center_restored = {
 	resources = {
 		category = megastructures
 		cost = {
-			alloys = 15000
 			unity = 3200
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 15000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 15000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 15000
+			mult = @halved_alloy_to_food_cost_ratio
 		}
 
 		upkeep = {
 			energy = 75
 		}
 	}
-	construction_blocks_and_blocked_by = none
 
 	upgrade_from = {
 		strategic_coordination_center_ruined
