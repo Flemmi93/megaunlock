@@ -103,24 +103,40 @@ dyson_sphere_0 = {
 				}
 			}
 		}
-		if = {
-				limit = {
-					from = { is_ai = yes }
-				}
-				custom_tooltip = {
-					fail_text = "requires_no_colonies"
-					NOT = {
-						any_system_planet = {
-							is_colony = yes
-							is_artificial = no
-							exists = owner
-							owner = {
-								is_primitive = no
-							}
+		custom_tooltip = {
+			success_text = "enclave.4243.name"
+			any_system_planet = {
+				is_colony = yes
+			}
+		}
+		custom_tooltip = {
+			success_text = "effect_every_system_colony"
+			any_system_planet = {
+				is_colony = yes
+			}
+		}
+		custom_tooltip = {
+			success_text = "DESTROY_COLONY_EFFECT"
+			any_system_planet = {
+				is_colony = yes
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_colonies"
+			OR = {
+				from = { is_ai = no }
+				NOT = {
+					any_system_planet = {
+						is_colony = yes
+						is_artificial = no
+						exists = owner
+						owner = {
+							is_primitive = no
 						}
 					}
 				}
 			}
+		}
 		custom_tooltip = {
 			fail_text = "blocked_by_pre_ftl_policy"
 			if = {
@@ -137,19 +153,17 @@ dyson_sphere_0 = {
 				}
 			}
 		}
-		if = {
-				limit = {
-					from = { is_ai = yes }
-				}
-				custom_tooltip = {
-					fail_text = "requires_no_black_hole_neutron_star_pulsar"
-					NOT = {
-						is_star_class = sc_black_hole
-						is_star_class = sc_neutron_star
-						is_star_class = sc_pulsar
-					}
+		custom_tooltip = {
+			fail_text = "requires_no_black_hole_neutron_star_pulsar"
+			OR = {
+				from = { is_ai = no }
+				NOT = {
+					is_star_class = sc_black_hole
+					is_star_class = sc_neutron_star
+					is_star_class = sc_pulsar
 				}
 			}
+		}
 		# custom_tooltip = {
 		# 	fail_text = "requires_no_binary_trinary"
 		# 	NOR = {
@@ -171,10 +185,8 @@ dyson_sphere_0 = {
 		# }
 		custom_tooltip = {
 			fail_text = "requires_no_existing_megastructure"
-			if = {
-				limit = {
-					from = { is_ai = yes }
-				}
+			OR = {
+				from = { is_ai = no }
 				has_no_non_gate_megastructure = yes
 			}
 			NOT = {

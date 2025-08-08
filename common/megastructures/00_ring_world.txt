@@ -38,7 +38,8 @@ ring_world_1 = {
 		}
 	}
 	construction_blocks_and_blocked_by = none
-	custom_tooltip_requirements = "MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_RING_WORLD"
+	# custom_tooltip_requirements = "MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_RING_WORLD"
+	custom_tooltip_requirements = "DESTROY_COLONY_EFFECT"
 
 	prerequisites = { "tech_ring_world" }
 
@@ -61,12 +62,10 @@ ring_world_1 = {
 				}
 			}
 		}
-		if = {
-			limit = {
-				from = { is_ai = yes }
-			}
-			custom_tooltip = {
-				fail_text = "requires_no_habitable_planets"
+		custom_tooltip = {
+			fail_text = "requires_no_habitable_planets"
+			OR = {
+				from = { is_ai = no }
 				NOT = {
 					any_system_planet = {
 						colonizable_planet = yes
@@ -74,15 +73,13 @@ ring_world_1 = {
 				}
 			}
 		}
-		if = {
-				limit = {
-					from = { is_ai = yes }
-				}
-				custom_tooltip = {
-					fail_text = "requires_no_black_hole"
-					NOT = { is_star_class = sc_black_hole }
-				}
+		custom_tooltip = {
+			fail_text = "requires_no_black_hole"
+			OR = {
+				from = { is_ai = no }
+				NOT = { is_star_class = sc_black_hole }
 			}
+		}
 		custom_tooltip = {
 			fail_text = "requires_no_binary_trinary"
 			NOR = {
@@ -105,10 +102,8 @@ ring_world_1 = {
 
 		custom_tooltip = {
 			fail_text = "requires_no_existing_megastructure"
-			if = {
-				limit = {
-					from = { is_ai = yes }
-				}
+			OR = {
+				from = { is_ai = no }
 				has_no_non_gate_megastructure = yes
 			}
 			NOT = {
