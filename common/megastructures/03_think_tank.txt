@@ -62,8 +62,8 @@ think_tank_0 = {
 			if = {
 				limit = {
 					from = { is_ai = yes }
-					has_no_non_gate_megastructure = yes
 				}
+				has_no_non_gate_megastructure = yes
 			} # makes it so the ai doesnt spam these around to a crazy degree.
 			NOT = {
 				any_system_planet = {
