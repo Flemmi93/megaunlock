@@ -6,6 +6,6 @@ tags={
 }
 name="Build Multiple Megastrcutures at once"
 picture="megaunlock.jpg"
-supported_version="v4.0.*"
+supported_version="v4.1.*"
 path="C:/Users/ftb_1/Documents/Paradox Interactive/Stellaris/mod/megaunlock"
 remote_file_id="1673226814"
